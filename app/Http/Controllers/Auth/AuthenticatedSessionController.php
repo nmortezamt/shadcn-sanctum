@@ -27,8 +27,6 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
-
-        $request->session()->regenerate();
         $user = Auth::user();
         $token = $user->createToken('auth_token')->plainTextToken;
         return response()->json([
